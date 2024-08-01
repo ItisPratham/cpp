@@ -25,14 +25,14 @@ void PrintLinkedlist(Node* head){
     cout<<endl;
 }
 
-void InsertAtBeginning(Node* head, int data){
+Node* InsertAtBeginning(Node* head, int data){
     Node* n = new Node(data);
     n->next = head;
     head = n;
-    PrintLinkedlist(head);
+    return head;
 }
 
-void InsertAtEnd(Node* head, int data){
+Node* InsertAtEnd(Node* head, int data){
     Node* n = new Node(data);
     if (head != NULL){
         Node* temp = head;
@@ -44,10 +44,10 @@ void InsertAtEnd(Node* head, int data){
     else {
         head = n;
     }
-    PrintLinkedlist(head);
+    return head;
 }
 
-void InsertInTheMiddle(Node* head, int data, int index){
+Node* InsertInTheMiddle(Node* head, int data, int index){
     int t = 0;
     if (index >= 0){
         Node* n = new Node(data);
@@ -75,14 +75,10 @@ void InsertInTheMiddle(Node* head, int data, int index){
         cout<<"Enter a Non-Negative Index Number"<<endl;
         t = 1;
     }
-    if(t==0){
-        cout<<"New List is "<<endl;
-        PrintLinkedlist(head);
-    }
-
+    return head;
 }
 
-void AppendTwoList(Node* head1, Node* head2){
+Node* AppendTwoList(Node* head1, Node* head2){
     if (head1 != NULL){
         Node* temp = head1;
         while(temp->next != NULL){
@@ -93,7 +89,7 @@ void AppendTwoList(Node* head1, Node* head2){
     else {
         head1 = head2;
     }
-    PrintLinkedlist(head1);
+    return head1;
 }
 
 void SumofLinkedList(Node* head){
@@ -128,18 +124,23 @@ void IsSameList(Node* head1, Node* head2){
 
 int main() {
     Node* head1 = NULL;
-    InsertAtEnd(head1, 2);
-    InsertAtEnd(head1, 3);
-    InsertAtBeginning(head1, 0);
-    InsertInTheMiddle(head1, 4, 2);
-    
+    head1 = InsertAtEnd(head1, 2);
+    head1 = InsertAtEnd(head1, 3);
+    PrintLinkedlist(head1);
+    head1 = InsertAtBeginning(head1, 0);
+    head1 = InsertInTheMiddle(head1, 4, 2);
+    PrintLinkedlist(head1);
+
     Node* head2 = new Node(1);
-    InsertAtEnd(head2, 2);
-    InsertAtEnd(head2, 3);
+    head2 = InsertAtEnd(head2, 2);
+    head2 = InsertAtEnd(head2, 3);
+    PrintLinkedlist(head2);
     
-    AppendTwoList(head1, head2);
-    SumofLinkedList(head1);
     IsSameList(head1, head2);
+    
+    head1 = AppendTwoList(head1, head2);
+    PrintLinkedlist(head1);
+    SumofLinkedList(head1);
 
     return 0;
 }
