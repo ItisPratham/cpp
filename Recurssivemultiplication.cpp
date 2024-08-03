@@ -4,15 +4,18 @@
 
 using namespace std;
 
-int recursion(int x, int n){
+int recursion(int x, int n, int *count){
+    *count += 1;
     if(n > 1){
         if(n%2 == 0){
-            int s = recursion(x, n/2);
+            int s = recursion(x, n/2, count);
             return s*s;
+            //return recursion(x, n/2, count)*recursion(x, n/2, count);
         }
         else{
-            int s = recursion(x, n/2);
+            int s = recursion(x, n/2, count);
             return s*s*x;
+            //return recursion(x, n/2, count)*recursion(x, n/2, count)*x;
         }
     }
     else{
@@ -28,5 +31,6 @@ int main(){
     cin>>x;
     cout<<"Enter exponential : ";
     cin>>n;
-    cout<<"Exponential "<<recursion(x, n);
+    int count = 0;
+    cout<<"Exponential "<<recursion(x, n, &count)<<"\nRecursion count is "<<count;
 }
