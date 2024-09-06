@@ -71,6 +71,48 @@ public:
             temp->next = n;
         }
     }
+
+    void insertAtMiddle(int data, int index){
+        if(index<0){
+            cout<<"Enter a non negative index"<<endl;
+            return;
+        }
+        if(index == 0){
+            insertAtBeginning(data);
+            return;
+        }
+        Node* temp = head;
+        for(int i = 0; i<index-1; i++){
+            if(temp == NULL){
+                cout<<"Index out of range"<<endl;
+                return;
+            }
+            else{
+                temp = temp->next;
+            }
+        }
+        if(temp == NULL){
+            cout<<"Index out of range2"<<endl;
+            return;
+        }
+        Node* n = new Node(data);
+        if(temp->next!= NULL){
+            n->next = temp->next;
+            temp->next->prev = n;
+        }
+        temp->next = n;
+        n->prev = temp;
+    }
+
+    void SumofLinkedList(){
+        int sum = 0;
+        Node* temp = head;
+        while(temp!=NULL){
+            sum += temp->data;
+            temp = temp->next;
+        }
+        cout<<"The sum is "<<sum<<endl;
+    }
 };
 
 int main(){
@@ -78,10 +120,14 @@ int main(){
     a->insertAtBeginning(1);
     a->insertAtBeginning(5);
     a->insertAtEnd(2);
-    a->insertAtBeginning(4);
+    a->insertAtMiddle(10, 2);
+//    a->insertAtBeginning(4);
     a->display();
-    a->count();
+//    a->count();
     a->insertAtEnd(9);
     a->display();
-    a->count();
+    a->insertAtMiddle(99, 5);
+    a->display();
+    a->SumofLinkedList();
+//    a->count();
 }
