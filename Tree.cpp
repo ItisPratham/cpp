@@ -61,6 +61,26 @@ private:
         }
     }
 
+    void levelorderTraversal(Node* node) {
+        if (node == nullptr) return;
+
+        queue<Node*> q;
+        q.push(node);
+
+        while (!q.empty()) {
+            Node* current = q.front();
+            cout << current->data << " ";
+            q.pop();
+
+            if (current->left != nullptr) {
+                q.push(current->left);
+            }
+            if (current->right != nullptr) {
+                q.push(current->right);
+            }
+        }
+    }
+
 public:
     Tree(int data){
         root = new Node(data);
@@ -115,6 +135,12 @@ public:
         postorderTraversal(root);
         cout<<endl;
     }
+
+    void displayLevelorder(){
+        cout<<"Levelorder traversal: ";
+        levelorderTraversal(root);
+        cout<<endl;
+    }
 };
 
 int main() {
@@ -129,6 +155,7 @@ int main() {
     t->displayInorder();
     t->displayPostorder();
     t->displayPreorder();
+    t->displayLevelorder();
 
     return 0;
 }
